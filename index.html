@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dice with Kali</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                background: url('assets/background.png') no-repeat center center fixed;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: Arial, sans-serif;
+            }
+            
+            #scoreBoard {
+                margin: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: white;
+                text-shadow: 0 0 5px black;
+            }
+            
+            #gameCanvas {
+                border: 3px solid black;
+                display: block;
+                background: transparent;
+            }
+            
+            #gameOverOverlay {
+                display: none; 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                width: 100%; 
+                height: 100%; 
+                background-color: rgba(0,0,0,0.8); 
+                color: white; 
+                font-size: 24px; 
+                text-align: center; 
+                justify-content: center; 
+                align-items: center; 
+                flex-direction: column; 
+                z-index: 10;
+            }
+            
+            #gameOverOverlay button {
+                padding: 10px 20px; 
+                font-size: 18px; 
+                cursor: pointer;
+                margin-top: 20px;
+            }
+            
+
+            #helpButton {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 30px;
+                height: 30px;
+                background: black;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            #rulesPopup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 280px;
+                padding: 15px;
+                background: white;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                z-index: 100;
+            }
+
+
+            #closeRules {
+                float: right;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+
+            #rulesPopup h3 {
+                margin-top: 0;
+                font-size: 18px;
+            }
+
+
+            #rulesPopup ul {
+                padding-left: 20px;
+                margin-bottom: 0;
+            }
+
+            #rulesPopup li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="helpButton">?</button>
+
+        <div id="rulesPopup">
+          <span id="closeRules">X</span>
+          <h3>Oyun Kuralları</h3>
+          <ul>
+            <li>Her turda 3 zar üretilir</li>
+            <li>Zarları 4x4 alana sürükle-bırak</li>
+            <li>Aynı renk/sayı yan yana gelebilir</li>
+            <li>Tam satır/sütun silinir ve puan alırsın</li>
+            <li>Yer kalmayınca oyun biter</li>
+          </ul>
+        </div>
+        <div id="scoreBoard">Skor: 0</div>
+        <canvas id="gameCanvas" width="400" height="530"></canvas>
+        
+        <!-- Oyun bitti ekranı -->
+        <div id="gameOverOverlay">
+            <p id="gameOverMessage">Oyun Bitti! Skorunuz: 0</p>
+            <button onclick="resetGame()">Tekrar Oyna</button>
+        </div>
+        
+        <script src="game.js"></script>
+    </body>
+</html>
